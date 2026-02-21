@@ -1,0 +1,96 @@
+{
+  "description": "Scoring configuration for item selection algorithm",
+  
+  "penalties": {
+    "item_count_mismatch": {
+      "description": "Penalty per missing item when we can't match friend's item count",
+      "value": 10,
+      "notes": "If friend has 10 items but we only offer 8, penalty = 2 * 10 = 20 points"
+    },
+    "optimal_ratio_exceeded": {
+      "description": "Penalty per 0.025 exceeded beyond the optimal ratio threshold",
+      "value": 20,
+      "notes": "If ratio is 0.175 (0.05 over optimal 0.125), penalty = 2 * 20 = 40 points"
+    }
+  },
+  
+  "bonuses": {
+    "ak47": {
+      "description": "Bonus points for each AK-47 included",
+      "value": 7,
+      "notes": "Popular weapon, increases trade appeal"
+    },
+    "awp": {
+      "description": "Bonus points for each AWP included",
+      "value": 7,
+      "notes": "Popular weapon, increases trade appeal"
+    },
+    "knife": {
+      "description": "Bonus points for each knife included",
+      "value": 20,
+      "notes": "High-value premium items"
+    },
+    "gloves": {
+      "description": "Bonus points for each gloves included",
+      "value": 20,
+      "notes": "High-value premium items"
+    },
+    "diversity": {
+      "description": "Bonus for weapon type diversity",
+      "value": 5,
+      "notes": "Applied per unique weapon type category (rifle/sniper/pistol/smg/knife/gloves)"
+    }
+  },
+  
+  "thresholds": {
+    "optimal_ratio": {
+      "description": "Optimal value ratio (items to give / items to receive)",
+      "value": 0.125,
+      "notes": "12.5% - ideal target for profitability. Penalties apply when exceeded."
+    },
+    "minimum_ratio": {
+      "description": "Minimum required value ratio for base account checking",
+      "value": 0.125,
+      "notes": "12.5% (1/8) - used to determine if we have enough inventory for trade"
+    },
+    "maximum_ratio": {
+      "description": "Maximum allowed value ratio (items to give / items to receive)",
+      "value": 0.30,
+      "notes": "30% - hard limit. Any strategy exceeding this automatically fails."
+    },
+    "high_value_trade": {
+      "description": "Threshold for considering a trade as high-value",
+      "value": 100,
+      "notes": "Trades with friend value >= $100 are considered high-value"
+    }
+  },
+  
+  "strategy": {
+    "max_unique_items": {
+      "description": "Maximum number of unique items to select",
+      "value": 50,
+      "notes": "Upper limit for number of different items in offer"
+    },
+    "max_popular_replacements": {
+      "description": "Maximum number of replacements in POPULAR_N strategy",
+      "value": 5,
+      "notes": "Limits iterations when replacing non-popular items with popular ones"
+    },
+    "prefer_cheaper_items": {
+      "description": "Whether to prefer cheaper items in normal trades",
+      "value": true,
+      "notes": "For non-high-value trades, sort by price ascending"
+    },
+    "prefer_well_stocked_items": {
+      "description": "Whether to prefer items with higher quantity",
+      "value": true,
+      "notes": "Helps maintain inventory balance"
+    }
+  },
+  
+  "item_patterns": {
+    "knife_pattern": "★",
+    "gloves_pattern": "★.*Gloves",
+    "case_patterns": ["Case", "Package", "Capsule"]
+  }
+}
