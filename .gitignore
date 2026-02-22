@@ -1,0 +1,10 @@
+# Secrets and env files
+*.env
+automate_trading.env
+.env.*
+
+# Runtime data
+data/
+node_modules/
+npm-debug.log
+.DS_Store
